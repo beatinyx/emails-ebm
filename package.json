@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:vsm-black": "node vsm-black-2026/_src/build.mjs"
+    "build:vsm-black": "node vsm-black-2026/_src/build.mjs",
+    "build:now29-black": "node now29-black-2026/_src/build.mjs"
   },
   "devDependencies": {
     "pdfjs-dist": "^6.5.438",
