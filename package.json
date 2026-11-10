@@ -1,0 +1,12 @@
+{
+  "name": "emails-ebm",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:vsm-black": "node vsm-black-2026/_src/build.mjs"
+  },
+  "devDependencies": {
+    "pdfjs-dist": "^6.5.438",
+    "puppeteer-core": "^25.17.0"
+  }
+}
