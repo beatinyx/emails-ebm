@@ -101,11 +101,11 @@ function button(label) {
               <!--[if mso]>
               <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${CTA_URL}" style="height:74px;v-text-anchor:middle;width:544px;" arcsize="50%" strokecolor="#FFFFFF" strokeweight="3px" fillcolor="${YELLOW}">
                 <w:anchorlock/>
-                <center style="color:#2A0904;font-family:Arial,sans-serif;font-size:20px;font-weight:bold;text-transform:uppercase;">${esc(label)} &rarr;</center>
+                <center style="color:#2A0904;font-family:Arial,sans-serif;font-size:18px;font-weight:bold;text-transform:uppercase;">${esc(label)} &rarr;</center>
               </v:roundrect>
               <![endif]-->
               <!--[if !mso]><!-->
-              <a href="${CTA_URL}" target="_blank" class="btn" style="display:block;background-color:${YELLOW};color:#2A0904;font-family:${FONT};font-size:20px;line-height:26px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;text-decoration:none;text-align:center;padding:22px 20px;border:3px solid #FFFFFF;border-radius:999px;box-shadow:0 0 0 6px rgba(255,194,14,.22),0 0 38px 6px rgba(255,170,20,.65);mso-hide:all;">${esc(label)}&nbsp;&rarr;</a>
+              <a href="${CTA_URL}" target="_blank" class="btn" style="display:block;background-color:${YELLOW};color:#2A0904;font-family:${FONT};font-size:18px;line-height:24px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;text-decoration:none;text-align:center;padding:23px 14px;border:3px solid #FFFFFF;border-radius:999px;box-shadow:0 0 0 6px rgba(255,194,14,.22),0 0 38px 6px rgba(255,170,20,.65);mso-hide:all;">${esc(label)}&nbsp;&rarr;</a>
               <!--<![endif]-->
             </td>
           </tr>`;
