@@ -46,9 +46,12 @@
   #hero .pronto{position:absolute;z-index:3;width:236px;left:50%;transform:translateX(-50%);top:86px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.35))}
   #hero .label{position:absolute;right:14px;bottom:14px;background:var(--red);color:#fff;font-size:10px;font-weight:500;letter-spacing:.5px;padding:4px 10px 3px;border-radius:999px}
 
-  /* ---------- OFERTA ---------- */
-  #oferta{padding:34px 24px 34px}
-  #oferta .row{display:flex;align-items:center;justify-content:center;gap:0}
+  /* ---------- DESCONTO (box neon, logo abaixo do título) ---------- */
+  #desconto{padding:30px 24px 38px}
+  #desconto .row{display:flex;align-items:center;justify-content:center;gap:0}
+  /* ---------- CONDIÇÕES (tarja financiamento + tag ITBI) ---------- */
+  #condicoes{padding:22px 24px 30px}
+  #condicoes .tarja{margin-top:0}
   .neon{position:relative;width:250px;height:128px;border-radius:20px;
     background:
       linear-gradient(135deg,rgba(255,255,255,.18) 0%,rgba(255,255,255,0) 28%),
@@ -83,6 +86,14 @@
   .tag .body::before{content:"";position:absolute;left:-22px;top:0;border-style:solid;border-width:29px 22px 29px 0;border-color:transparent var(--yellow) transparent transparent}
   .tag .hole{position:absolute;left:14px;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:50%;background:var(--bg);box-shadow:0 0 0 2px rgba(42,9,4,.35)}
   .tag sup{font-size:16px;vertical-align:top;position:relative;top:-2px}
+
+  /* ---------- 2 QTOS | LAZER COMPLETO (selo do produto) ---------- */
+  #quartos{padding:8px 24px 36px;display:flex;justify-content:center}
+  #quartos .badge{position:relative;border:2.5px solid rgba(255,255,255,.92);border-radius:16px;padding:4px 46px 30px;text-align:center}
+  #quartos .q{font-family:'Gotham';font-weight:900;font-size:70px;line-height:1.05;color:#fff;letter-spacing:.5px;white-space:nowrap}
+  #quartos .pill{position:absolute;left:50%;bottom:-21px;transform:translateX(-50%);white-space:nowrap;
+    background:var(--red);color:#fff;font-family:'Gotham';font-weight:500;font-size:23px;letter-spacing:.3px;text-transform:uppercase;
+    padding:8px 24px 7px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.35)}
 
   /* ---------- PRAZO (e-mail 3) ---------- */
   #prazo{height:140px;display:flex;align-items:center;justify-content:center}
@@ -121,7 +132,7 @@
   <img class="pronto" src="assets/selo-obras-iniciadas.png" alt="">
 </section>
 
-<section id="oferta" class="slice" hidden>
+<section id="desconto" class="slice" hidden>
   <div class="row">
     <div class="neon wide">
       <div class="lbl">Até</div>
@@ -129,8 +140,15 @@
       <div class="sub">de desconto<sup>*</sup></div>
     </div>
   </div>
+</section>
+
+<section id="condicoes" class="slice" hidden>
   <div class="tarja"><span>Condições facilitadas de financiamento<sup>*</sup></span></div>
   <div class="tag"><div class="body"><span class="hole"></span>ITBI e registro grátis<sup>*</sup></div></div>
+</section>
+
+<section id="quartos" class="slice" hidden>
+  <div class="badge"><div class="q">2 Qtos</div><div class="pill">Lazer completo</div></div>
 </section>
 
 <section id="prazo" class="slice" hidden>

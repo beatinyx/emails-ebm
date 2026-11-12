@@ -18,7 +18,9 @@ const SLICES = [
   { file: "hero-01-acesso.jpg", q: "s=hero&img=perspectiva-acesso.jpg&label=PERSPECTIVA ACESSO&pos=center 55%" },
   { file: "hero-02-piscina.jpg", q: "s=hero&img=perspectiva-piscina.jpg&label=PERSPECTIVA PISCINA&pos=center 60%" },
   { file: "hero-03-fachada.jpg", q: "s=hero&img=perspectiva-fachada.jpg&label=PERSPECTIVA FACHADA&pos=center 22%&h=440" },
-  { file: "oferta.jpg", q: "s=oferta" },
+  { file: "desconto.jpg", q: "s=desconto" },
+  { file: "condicoes.jpg", q: "s=condicoes" },
+  { file: "quartos.jpg", q: "s=quartos" },
   { file: "prazo.jpg", q: "s=prazo" },
   { file: "footer.png", q: "s=footer" },
 ];
