@@ -6,18 +6,23 @@ const CTA_URL = process.env.CTA_URL || '#';
 
 const LEGAL = '*Campanha válida até 30/11/2026. Consulte condições e unidades participantes com a equipe de vendas. R1-373.946.';
 
-const OFERTA_ALT = 'Até R$ 5 mil + 3 meses de condomínio grátis*. ITBI e registro grátis*.';
+const DESCONTO_ALT = 'Até R$ 5 mil + 3 meses de condomínio grátis*.';
+const CONDICOES_ALT = 'ITBI e registro grátis*.';
+const QUARTOS_ALT = '2 quartos. Lazer completo.';
 
+// h1: uma linha por item. c = 'w' (branco) ou 'y' (amarelo).
 export const emails = [
   {
     file: 'email-01-abertura.html',
     subject: 'A Black EBM começou. Seu apê já está pronto!',
     preheader: 'Vida Samambaia pronto para morar, com ITBI e registro grátis.*',
-    h1: ['A Black começou.', 'Sua mudança pode ser agora!'],
+    h1: [{ t: 'A Black EBM começou.', c: 'w' }, { t: 'E o seu apê já está à sua espera.', c: 'y' }],
     blocks: [
+      { img: 'desconto.jpg', alt: DESCONTO_ALT },
+      { img: 'hero-01-foto-real-acesso.jpg', alt: 'Vida Samambaia, Samambaia. Pronto para morar. Foto real do acesso.' },
+      { img: 'quartos.jpg', alt: QUARTOS_ALT },
       { text: 'Seu novo apê já está pronto no Vida Samambaia. Aproveite a Black EBM para dar o próximo passo: sair do aluguel e conquistar seu 2 quartos em condomínio fechado, com lazer completo.' },
-      { img: 'hero-01-acesso.jpg', alt: 'Vida Samambaia, Samambaia. Pronto para morar. Perspectiva do acesso.' },
-      { img: 'oferta.jpg', alt: OFERTA_ALT },
+      { img: 'condicoes.jpg', alt: CONDICOES_ALT },
     ],
     cta: 'Quero mudar ainda este ano',
   },
@@ -25,13 +30,15 @@ export const emails = [
     file: 'email-02-reforco.html',
     subject: 'Seu Vida Samambaia com ITBI e registro grátis*',
     preheader: 'Aproveite ITBI e registro grátis* para conquistar seu apartamento no Vida Samambaia.',
-    h1: ['Aproveite a Black pra', 'dar adeus ao aluguel.'],
+    h1: [{ t: 'Aproveite a Black EBM pra', c: 'w' }, { t: 'dar adeus ao aluguel.', c: 'y' }],
     blocks: [
-      { text: 'A Black EBM é a oportunidade para tirar a compra do apê dos planos. No Vida Samambaia, você encontra 2 quartos, condomínio fechado e lazer completo para viver sua nova fase.' },
-      { img: 'hero-02-piscina.jpg', alt: 'Vida Samambaia, Samambaia. Pronto para morar. Perspectiva da piscina.' },
+      { img: 'desconto.jpg', alt: DESCONTO_ALT },
+      { text: 'A Black EBM é a oportunidade para tirar a compra do seu apê dos planos.' },
+      { img: 'hero-02-foto-real-piscina.jpg', alt: 'Vida Samambaia, Samambaia. Pronto para morar. Foto real da piscina adulto.' },
+      { img: 'quartos.jpg', alt: QUARTOS_ALT },
       { text: 'Seu novo começo tem muito mais para aproveitar. Piscina, academia e espaços para curtir com a família fazem parte do seu próximo endereço em Samambaia.' },
-      { text: 'Fale com um consultor, faça sua simulação e conheça as condições para conquistar seu apê pronto para morar.', strong: true },
-      { img: 'oferta.jpg', alt: OFERTA_ALT },
+      { text: 'Fale com um consultor e conheça as condições para conquistar seu apê pronto para morar.', strong: true },
+      { img: 'condicoes.jpg', alt: CONDICOES_ALT },
     ],
     cta: 'Quero aproveitar essa condição',
   },
@@ -39,13 +46,14 @@ export const emails = [
     file: 'email-03-reta-final.html',
     subject: 'Até 30/11 para aproveitar a Black da EBM.',
     preheader: 'Seu novo apê já está pronto para morar. Não espere a Black acabar.',
-    h1: ['Últimos dias de Black.', 'Hora de dar o próximo passo!'],
+    h1: [{ t: 'Últimos dias da Black EBM.', c: 'w' }, { t: 'Mude para seu apê', c: 'y' }, { t: 'ainda esse ano.', c: 'y' }],
     blocks: [
-      { text: 'Ainda dá tempo de aproveitar a Black EBM para conquistar seu Vida Samambaia. Seu apê de 2 quartos, em condomínio fechado e com lazer completo, já está pronto.' },
+      { img: 'desconto.jpg', alt: DESCONTO_ALT },
       { text: 'A campanha termina em 30/11. Fale com um consultor e conheça as condições para fazer do Vida Samambaia o seu novo endereço.', strong: true },
       { img: 'hero-03-fachada.jpg', alt: 'Vida Samambaia, Samambaia. Pronto para morar. Foto real da fachada.' },
+      { img: 'quartos.jpg', alt: QUARTOS_ALT },
       { img: 'prazo.jpg', alt: 'Aproveite até 30/11.' },
-      { img: 'oferta.jpg', alt: OFERTA_ALT },
+      { img: 'condicoes.jpg', alt: CONDICOES_ALT },
     ],
     cta: 'Quero aproveitar antes de acabar',
   },
@@ -78,18 +86,25 @@ function text(t, strong) {
           </tr>`;
 }
 
+// Título: uma linha por item, branca ou amarela.
+function h1(lines) {
+  return lines.map(({ t, c }) => c === 'y' ? `<span style="color:${YELLOW};">${esc(t)}</span>` : esc(t)).join('<br>');
+}
+
+// Botão em bloco (largura total), mais alto, com contorno branco e brilho,
+// para se destacar da tag de ITBI logo acima.
 function button(label) {
   return `
           <tr>
-            <td align="center" class="px" style="padding:8px 48px 40px;background-color:${BG};">
+            <td align="center" class="px" style="padding:18px 28px 44px;background-color:${BG};">
               <!--[if mso]>
-              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${CTA_URL}" style="height:60px;v-text-anchor:middle;width:440px;" arcsize="50%" stroke="f" fillcolor="${YELLOW}">
+              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${CTA_URL}" style="height:74px;v-text-anchor:middle;width:544px;" arcsize="50%" strokecolor="#FFFFFF" strokeweight="3px" fillcolor="${YELLOW}">
                 <w:anchorlock/>
-                <center style="color:#2A0904;font-family:Arial,sans-serif;font-size:17px;font-weight:bold;text-transform:uppercase;">${esc(label)}</center>
+                <center style="color:#2A0904;font-family:Arial,sans-serif;font-size:18px;font-weight:bold;text-transform:uppercase;">${esc(label)} &rarr;</center>
               </v:roundrect>
               <![endif]-->
               <!--[if !mso]><!-->
-              <a href="${CTA_URL}" target="_blank" class="btn" style="display:inline-block;background-color:${YELLOW};color:#2A0904;font-family:${FONT};font-size:17px;line-height:22px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;text-decoration:none;padding:19px 40px;border-radius:999px;box-shadow:0 0 24px rgba(255,170,20,.45);mso-hide:all;">${esc(label)}&nbsp;&rarr;</a>
+              <a href="${CTA_URL}" target="_blank" class="btn" style="display:block;background-color:${YELLOW};color:#2A0904;font-family:${FONT};font-size:18px;line-height:24px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;text-decoration:none;text-align:center;padding:23px 14px;border:3px solid #FFFFFF;border-radius:999px;box-shadow:0 0 0 6px rgba(255,194,14,.22),0 0 38px 6px rgba(255,170,20,.65);mso-hide:all;">${esc(label)}&nbsp;&rarr;</a>
               <!--<![endif]-->
             </td>
           </tr>`;
@@ -134,7 +149,7 @@ export function renderEmail(e, ctx) {
     .fluid{width:100% !important;max-width:100% !important;height:auto !important;}
     .px{padding-left:24px !important;padding-right:24px !important;}
     .h1{font-size:22px !important;line-height:28px !important;}
-    .btn{display:block !important;padding:18px 16px !important;font-size:15px !important;}
+    .btn{padding:20px 12px !important;font-size:16px !important;line-height:21px !important;}
   }
 </style>
 </head>
@@ -153,7 +168,7 @@ ${img('header.jpg', 'Black EBM', ctx)}
           <tr>
             <td class="px" style="padding:6px 28px 18px;background-color:${BG};text-align:center;">
               <h1 class="h1" style="margin:0;font-family:${FONT};font-size:27px;line-height:34px;font-weight:800;text-transform:uppercase;letter-spacing:.2px;color:#FFFFFF;">
-                ${esc(e.h1[0])}<br><span style="color:${YELLOW};">${esc(e.h1[1])}</span>
+                ${h1(e.h1)}
               </h1>
             </td>
           </tr>${body}${button(e.cta)}
