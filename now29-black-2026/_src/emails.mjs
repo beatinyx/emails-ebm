@@ -8,18 +8,22 @@ const CTA_URL = process.env.CTA_URL || "#";
 
 const LEGAL = "*Campanha válida de 11/11 a 30/11/2026, para unidades participantes do Now 29, enquanto durar o estoque promocional. Consulte condições de desconto, documentação e financiamento com a equipe de vendas. R-13/24.254. Perspectiva ilustrativa.";
 
-const OFERTA_ALT = "Até R$ 24,5 mil de desconto*. Condições facilitadas de financiamento*. ITBI e registro grátis*.";
+const DESCONTO_ALT = "Até R$ 24,5 mil de desconto*.";
+const CONDICOES_ALT = "Condições facilitadas de financiamento*. ITBI e registro grátis*.";
+const QUARTOS_ALT = "2 quartos. Lazer completo.";
 
+// h1: uma linha por item. c = 'w' (branco), 'y' (amarelo) ou 'big' (palavra em destaque, amarela e maior).
 export const emails = [
   {
     file: "email-01-abertura.html",
     subject: "Black EBM: até R$ 24,5 mil de desconto*",
     preheader: "Seu Now 29 com ITBI e registro grátis* e condições facilitadas de financiamento*.",
-    h1: ["A Black começou.", "Conquiste seu apartamento no Now 29 com desconto!"],
+    h1: [{ t: "A Black começou.", c: "w" }, { t: "A hora de comprar seu apartamento é", c: "w" }, { t: "agora", c: "big" }],
     blocks: [
-      { text: "A hora de conquistar seu apê ganhou condições de Black! No Now 29, você encontra 2 quartos, 46 m² e lazer completo em Ceilândia Sul. Aproveite as vantagens da campanha até 30/11." },
+      { img: "desconto.jpg", alt: DESCONTO_ALT },
       { img: "hero-01-acesso.jpg", alt: "Now 29, Ceilândia Sul. Obras iniciadas. Perspectiva do acesso." },
-      { img: "oferta.jpg", alt: OFERTA_ALT },
+      { img: "quartos.jpg", alt: QUARTOS_ALT },
+      { img: "condicoes.jpg", alt: CONDICOES_ALT },
     ],
     cta: "Quero aproveitar essa oportunidade",
   },
@@ -27,11 +31,13 @@ export const emails = [
     file: "email-02-reforco.html",
     subject: "Now 29: desconto + ITBI e registro grátis*",
     preheader: "Até R$ 24,5 mil de desconto* e condições facilitadas para financiar seu apê*.",
-    h1: ["A hora de conquistar", "seu Now 29 é na Black!"],
+    h1: [{ t: "Saia do aluguel.", c: "w" }, { t: "Seu apê te espera na Black EBM.", c: "y" }],
     blocks: [
-      { text: "Seu apê de 2 quartos com piscina, academia e lazer para toda a família. Aproveite as condições da Black EBM e faça sua simulação com um consultor." },
+      { img: "desconto.jpg", alt: DESCONTO_ALT },
+      { text: "Seu apê de 2 quartos com piscina, academia e lazer para toda a família." },
       { img: "hero-02-piscina.jpg", alt: "Now 29, Ceilândia Sul. Obras iniciadas. Perspectiva da piscina." },
-      { img: "oferta.jpg", alt: OFERTA_ALT },
+      { img: "quartos.jpg", alt: QUARTOS_ALT },
+      { img: "condicoes.jpg", alt: CONDICOES_ALT },
     ],
     cta: "Quero simular meu Now 29",
   },
@@ -39,12 +45,14 @@ export const emails = [
     file: "email-03-reta-final.html",
     subject: "Até 30/11: aproveite a Black do Now 29",
     preheader: "Últimos dias para aproveitar até R$ 24,5 mil de desconto* no seu novo apê.",
-    h1: ["A Black é só até 30/11.", "Seu apê é pra vida toda."],
+    h1: [{ t: "Aproveite os últimos dias", c: "w" }, { t: "da Black EBM e realize", c: "w" }, { t: "o sonho do apê próprio.", c: "y" }],
     blocks: [
-      { text: "Ainda dá tempo de conquistar seu Now 29 com as vantagens da Black EBM. Aproveite o desconto, ITBI e registro grátis* e as condições facilitadas de financiamento*. Fale com um consultor antes de a campanha acabar." },
+      { img: "desconto.jpg", alt: DESCONTO_ALT },
+      { text: "Aproveite nossas condições especiais e realize o sonho do apê próprio agora mesmo! Desconto + ITBI e registro grátis* e condições facilitadas de financiamento* é só na Black EBM." },
       { img: "hero-03-fachada.jpg", alt: "Now 29, Ceilândia Sul. Obras iniciadas. Perspectiva da fachada." },
+      { img: "quartos.jpg", alt: QUARTOS_ALT },
       { img: "prazo.jpg", alt: "Aproveite até 30/11." },
-      { img: "oferta.jpg", alt: OFERTA_ALT },
+      { img: "condicoes.jpg", alt: CONDICOES_ALT },
     ],
     cta: "Quero aproveitar antes de acabar",
   },
@@ -77,18 +85,27 @@ function text(t, strong) {
           </tr>`;
 }
 
+// Título: linhas brancas/amarelas e, se houver, uma palavra em destaque (maior, amarela).
+function h1(lines) {
+  return lines.map(({ t, c }) => c === 'big'
+    ? `<span class="h1big" style="display:inline-block;font-size:58px;line-height:64px;font-weight:800;letter-spacing:1px;color:${YELLOW};">${esc(t)}</span>`
+    : c === 'y' ? `<span style="color:${YELLOW};">${esc(t)}</span>` : esc(t)).join('<br>');
+}
+
+// Botão em bloco (largura total), mais alto, com contorno branco e brilho,
+// para se destacar da tag amarela de ITBI logo acima.
 function button(label) {
   return `
           <tr>
-            <td align="center" class="px" style="padding:8px 28px 40px;background-color:${BG};">
+            <td align="center" class="px" style="padding:18px 28px 44px;background-color:${BG};">
               <!--[if mso]>
-              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${CTA_URL}" style="height:60px;v-text-anchor:middle;width:520px;" arcsize="50%" stroke="f" fillcolor="${YELLOW}">
+              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${CTA_URL}" style="height:74px;v-text-anchor:middle;width:544px;" arcsize="50%" strokecolor="#FFFFFF" strokeweight="3px" fillcolor="${YELLOW}">
                 <w:anchorlock/>
-                <center style="color:#2A0904;font-family:Arial,sans-serif;font-size:17px;font-weight:bold;text-transform:uppercase;">${esc(label)}</center>
+                <center style="color:#2A0904;font-family:Arial,sans-serif;font-size:20px;font-weight:bold;text-transform:uppercase;">${esc(label)} &rarr;</center>
               </v:roundrect>
               <![endif]-->
               <!--[if !mso]><!-->
-              <a href="${CTA_URL}" target="_blank" class="btn" style="display:inline-block;background-color:${YELLOW};color:#2A0904;font-family:${FONT};font-size:17px;line-height:22px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;text-decoration:none;padding:19px 34px;border-radius:999px;box-shadow:0 0 24px rgba(255,170,20,.45);mso-hide:all;">${esc(label)}&nbsp;&rarr;</a>
+              <a href="${CTA_URL}" target="_blank" class="btn" style="display:block;background-color:${YELLOW};color:#2A0904;font-family:${FONT};font-size:20px;line-height:26px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;text-decoration:none;text-align:center;padding:22px 20px;border:3px solid #FFFFFF;border-radius:999px;box-shadow:0 0 0 6px rgba(255,194,14,.22),0 0 38px 6px rgba(255,170,20,.65);mso-hide:all;">${esc(label)}&nbsp;&rarr;</a>
               <!--<![endif]-->
             </td>
           </tr>`;
@@ -133,7 +150,8 @@ export function renderEmail(e, ctx) {
     .fluid{width:100% !important;max-width:100% !important;height:auto !important;}
     .px{padding-left:24px !important;padding-right:24px !important;}
     .h1{font-size:22px !important;line-height:28px !important;}
-    .btn{display:block !important;padding:18px 16px !important;font-size:15px !important;}
+    .h1big{font-size:46px !important;line-height:52px !important;}
+    .btn{padding:20px 12px !important;font-size:16px !important;line-height:21px !important;}
   }
 </style>
 </head>
@@ -152,7 +170,7 @@ ${img('header.jpg', 'Black EBM', ctx)}
           <tr>
             <td class="px" style="padding:6px 28px 18px;background-color:${BG};text-align:center;">
               <h1 class="h1" style="margin:0;font-family:${FONT};font-size:27px;line-height:34px;font-weight:800;text-transform:uppercase;letter-spacing:.2px;color:#FFFFFF;">
-                ${esc(e.h1[0])}<br><span style="color:${YELLOW};">${esc(e.h1[1])}</span>
+                ${h1(e.h1)}
               </h1>
             </td>
           </tr>${body}${button(e.cta)}
