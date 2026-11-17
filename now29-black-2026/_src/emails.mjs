@@ -6,9 +6,9 @@
 // Link dos botões. Troque aqui (ou CTA_URL=... no build) quando tiver a LP/WhatsApp com UTM.
 const CTA_URL = process.env.CTA_URL || "#";
 
-const LEGAL = "*Campanha válida de 11/11 a 30/11/2026, para unidades participantes do Now 29, enquanto durar o estoque promocional. Consulte condições de desconto, documentação e financiamento com a equipe de vendas. R-13/24.254. Perspectiva ilustrativa.";
+const LEGAL = "*Condições válidas de 11/11/2026 a 30/11/2026 ou enquanto durarem os estoques promocionais. Oferta sujeita a alterações sem aviso prévio. Consulte um corretor. Imagem meramente ilustrativa. R-13/24.254.";
 
-const DESCONTO_ALT = "Até R$ 24,5 mil de desconto*.";
+const DESCONTO_ALT = "Até R$ 24.5 mil de desconto*.";
 const CONDICOES_ALT = "Condições facilitadas de financiamento*. ITBI e registro grátis*.";
 const QUARTOS_ALT = "2 quartos. Lazer completo.";
 
@@ -16,7 +16,7 @@ const QUARTOS_ALT = "2 quartos. Lazer completo.";
 export const emails = [
   {
     file: "email-01-abertura.html",
-    subject: "Black EBM: até R$ 24,5 mil de desconto*",
+    subject: "Black EBM: até R$ 24.5 mil de desconto*",
     preheader: "Seu Now 29 com ITBI e registro grátis* e condições facilitadas de financiamento*.",
     h1: [{ t: "A Black começou.", c: "w" }, { t: "A hora de comprar seu apartamento é", c: "w" }, { t: "agora", c: "big" }],
     blocks: [
@@ -30,7 +30,7 @@ export const emails = [
   {
     file: "email-02-reforco.html",
     subject: "Now 29: desconto + ITBI e registro grátis*",
-    preheader: "Até R$ 24,5 mil de desconto* e condições facilitadas para financiar seu apê*.",
+    preheader: "Até R$ 24.5 mil de desconto* e condições facilitadas para financiar seu apê*.",
     h1: [{ t: "Saia do aluguel.", c: "w" }, { t: "Seu apê te espera na Black EBM.", c: "y" }],
     blocks: [
       { img: "desconto.jpg", alt: DESCONTO_ALT },
@@ -44,7 +44,7 @@ export const emails = [
   {
     file: "email-03-reta-final.html",
     subject: "Até 30/11: aproveite a Black do Now 29",
-    preheader: "Últimos dias para aproveitar até R$ 24,5 mil de desconto* no seu novo apê.",
+    preheader: "Últimos dias para aproveitar até R$ 24.5 mil de desconto* no seu novo apê.",
     h1: [{ t: "Aproveite os últimos dias", c: "w" }, { t: "da Black EBM e realize", c: "w" }, { t: "o sonho do apê próprio.", c: "y" }],
     blocks: [
       { img: "desconto.jpg", alt: DESCONTO_ALT },
