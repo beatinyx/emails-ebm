@@ -4,9 +4,9 @@
 // Link dos botões. Troque aqui (ou CTA_URL=... no build) quando tiver a LP/WhatsApp com UTM.
 const CTA_URL = process.env.CTA_URL || '#';
 
-const LEGAL = '*Campanha válida até 30/11/2026. Consulte condições e unidades participantes com a equipe de vendas. R1-373.946.';
+const LEGAL = '*Condições válidas de 11/11/2026 a 30/11/2026 ou enquanto durarem os estoques promocionais. Oferta sujeita a alterações sem aviso prévio. Consulte um corretor. Imagem meramente ilustrativa. R-1/373.946.';
 
-const DESCONTO_ALT = 'Até R$ 5 mil + 3 meses de condomínio grátis*.';
+const DESCONTO_ALT = 'Até R$ 5 mil de desconto* + 3 meses de condomínio grátis*.';
 const CONDICOES_ALT = 'ITBI e registro grátis*.';
 const QUARTOS_ALT = '2 quartos. Lazer completo.';
 
@@ -175,7 +175,7 @@ ${img('header.jpg', 'Black EBM', ctx)}
 ${img('footer.png', 'Aqui, sua compra é pra vida toda. Vida Samambaia | EBM', ctx)}
           <tr>
             <td class="px" style="padding:4px 48px 36px;background-color:${BG};font-family:${FONT};font-size:11px;line-height:17px;color:#A88A7C;text-align:center;">
-              ${esc(LEGAL).replace(/(R1-[0-9.]+)/, '<span style="white-space:nowrap;">$1</span>')}
+              ${esc(LEGAL).replace(/(R-1\/[0-9.]+)/, '<span style="white-space:nowrap;">$1</span>')}
             </td>
           </tr>
         </table>

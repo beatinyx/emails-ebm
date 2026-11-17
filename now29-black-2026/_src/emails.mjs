@@ -6,14 +6,14 @@
 // Link dos botões. Troque aqui (ou CTA_URL=... no build) quando tiver a LP/WhatsApp com UTM.
 const CTA_URL = process.env.CTA_URL || "#";
 
-const LEGAL = "*Campanha válida de 11/11 a 30/11/2026, para unidades participantes do Now 29, enquanto durar o estoque promocional. Consulte condições de desconto, documentação e financiamento com a equipe de vendas. R-13/24.254. Perspectiva ilustrativa.";
+const LEGAL = "*Condições válidas de 11/11/2026 a 30/11/2026 ou enquanto durarem os estoques promocionais. Oferta sujeita a alterações sem aviso prévio. Consulte um corretor. Imagem meramente ilustrativa. R-13/24.254.";
 
-const OFERTA_ALT = "Até R$ 24,5 mil de desconto*. Condições facilitadas de financiamento*. ITBI e registro grátis*.";
+const OFERTA_ALT = "Até R$ 24.5 mil de desconto*. Condições facilitadas de financiamento*. ITBI e registro grátis*.";
 
 export const emails = [
   {
     file: "email-01-abertura.html",
-    subject: "Black EBM: até R$ 24,5 mil de desconto*",
+    subject: "Black EBM: até R$ 24.5 mil de desconto*",
     preheader: "Seu Now 29 com ITBI e registro grátis* e condições facilitadas de financiamento*.",
     h1: ["A Black começou.", "Conquiste seu apartamento no Now 29 com desconto!"],
     blocks: [
@@ -26,7 +26,7 @@ export const emails = [
   {
     file: "email-02-reforco.html",
     subject: "Now 29: desconto + ITBI e registro grátis*",
-    preheader: "Até R$ 24,5 mil de desconto* e condições facilitadas para financiar seu apê*.",
+    preheader: "Até R$ 24.5 mil de desconto* e condições facilitadas para financiar seu apê*.",
     h1: ["A hora de conquistar", "seu Now 29 é na Black!"],
     blocks: [
       { text: "Seu apê de 2 quartos com piscina, academia e lazer para toda a família. Aproveite as condições da Black EBM e faça sua simulação com um consultor." },
@@ -38,7 +38,7 @@ export const emails = [
   {
     file: "email-03-reta-final.html",
     subject: "Até 30/11: aproveite a Black do Now 29",
-    preheader: "Últimos dias para aproveitar até R$ 24,5 mil de desconto* no seu novo apê.",
+    preheader: "Últimos dias para aproveitar até R$ 24.5 mil de desconto* no seu novo apê.",
     h1: ["A Black é só até 30/11.", "Seu apê é pra vida toda."],
     blocks: [
       { text: "Ainda dá tempo de conquistar seu Now 29 com as vantagens da Black EBM. Aproveite o desconto, ITBI e registro grátis* e as condições facilitadas de financiamento*. Fale com um consultor antes de a campanha acabar." },
